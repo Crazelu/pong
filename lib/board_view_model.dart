@@ -100,6 +100,8 @@ class BoardViewModel extends ChangeNotifier {
   }
 
   void revive() {
+    _barBlocks = [];
+    _createBar();
     _bulletX = _squares.length ~/ 2;
     _bulletY = _squares.first.length ~/ 2;
     _xVel = 1;
@@ -126,9 +128,9 @@ class BoardViewModel extends ChangeNotifier {
 
   late int _lastPosition = _squares.first.length ~/ 2;
 
-  void updateBarPosition(double globalYPosition, double globalXPosition) {
-    if (globalXPosition < SizeUtil.deviceHeight * .4) return;
-    int position = globalYPosition ~/ GameSettings.bodySize;
+  void updateBarPosition(Offset offset) {
+    if (offset.dy < SizeUtil.deviceHeight * .4) return;
+    int position = offset.dx ~/ GameSettings.bodySize;
     if (position > _lastPosition) {
       _moveBarRight();
       _lastPosition = position;

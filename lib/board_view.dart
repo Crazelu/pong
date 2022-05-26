@@ -134,10 +134,7 @@ class GameWidget extends StatelessWidget {
 
     return GestureDetector(
       onHorizontalDragUpdate: (details) {
-        viewModel.updateBarPosition(
-          details.globalPosition.dx,
-          details.globalPosition.dy,
-        );
+        viewModel.updateBarPosition(details.globalPosition);
       },
       child: Column(
         children: [
